@@ -7,68 +7,7 @@ import java.util.stream.Collectors;
 
 public class LambdaMain {
     public static void main(String[] args) {
-        List<String> stringList = Arrays.asList("a", "ab", "abc", "abcd" ,"b", "bc", "bcd", "ab", "ab");
-
-        //반복문
-        stringList.forEach(System.out::println);
-
-        //map
-        List<String> newStringList = stringList.stream()
-                .map(s -> s + "추가")
-                .collect(Collectors.toList());
-
-        //Set
-        Set<String> newStringSet = stringList.stream()
-                .filter(s -> s.contains("ab"))
-                .map(s -> s + "추가")
-                .collect(Collectors.toSet());
-
-        //count
-        long count = stringList.stream().count();
-        System.out.println(count);
-
-        //allMatch
-        boolean allMatch = stringList.stream().allMatch(s -> s.equals("ab"));
-        System.out.println(allMatch);
-
-        //anyMatch
-        boolean anyMatch = stringList.stream().anyMatch(s -> s.equals("ab"));
-        System.out.println(anyMatch);
-
-        boolean noneMatch = stringList.stream().noneMatch(s -> s.equals("ab"));
-        System.out.println(noneMatch);
-
-        //distinct
-        List<String> distinctList = stringList.stream()
-                .distinct()
-                .collect(Collectors.toList());
-        System.out.println(distinctList);
-
-        //reduce
-        String reduceString = stringList.stream()
-                .reduce("", (acc, cur) -> {
-                    String aa = "";
-                    if(cur.contains("a")){
-                        aa = acc + cur;
-                    }
-                    return aa;
-                });
-
-        String reduceString1 = stringList.stream()
-                .reduce((acc, cur) -> acc + cur)
-                .orElse("empty");
-
-        //findAny
-        String findAny = stringList.stream().findAny().get();
-        System.out.println(findAny);
-
-        //findFirst
-        String findFirst = stringList.stream().findFirst()
-                .orElseGet(String::new);
-
-        //limit
-        List<String> limitList = stringList.stream()
-                .limit(5)
-                .collect(Collectors.toList());
+        ForEachFunction<String> forEachFunction = System.out::println;
+        forEachFunction.process("헬로우");
     }
 }
